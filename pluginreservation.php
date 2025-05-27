@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: Plugin Reservation
- * Description: Mon plugin de réservation pour WP.
+ * Plugin URI: https://github.com/E224733A/pluginreservation
+ * Description: Système de réservation de cours.
  * Version: 1.0.0
- * Author: Moi
+ * Author: Nono
+ * License: GPL2
  */
 
 if (!defined('ABSPATH')) exit;

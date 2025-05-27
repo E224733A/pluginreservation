@@ -4,7 +4,6 @@ if (!defined('ABSPATH')) exit;
 add_action('wp_enqueue_scripts', 'ponti_enqueue_styles', 99);
 
 
-if (!function_exists('ponti_enqueue_styles')) {
 function ponti_enqueue_styles() {
     if (!is_user_logged_in()) return;
 
@@ -19,7 +18,7 @@ function ponti_enqueue_styles() {
         );
     }
 }
-}
+
 
 add_shortcode('mes-cours-coach', function () {
     if (!is_user_logged_in()) {

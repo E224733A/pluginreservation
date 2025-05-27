@@ -1,23 +1,25 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
-add_action('wp_enqueue_scripts', 'ponti_enqueue_styles', 99);
+if (!function_exists('ponti_enqueue_styles')) {
+    add_action('wp_enqueue_scripts', 'ponti_enqueue_styles', 99);
 
+    function ponti_enqueue_styles() {
+        if (!is_user_logged_in()) return;
 
-function ponti_enqueue_styles() {
-    if (!is_user_logged_in()) return;
-
-    global $post;
-    if (isset($post) && has_shortcode($post->post_content, 'agenda-cours')) {
-        wp_enqueue_style(
-            'ponti-style',
-            plugin_dir_url(__FILE__) . '../assets/css/ponti.css',
-            [],
-            '1.0',
-            'all'
-        );
+        global $post;
+        if (isset($post) && has_shortcode($post->post_content, 'agenda-cours')) {
+            wp_enqueue_style(
+                'ponti-style',
+                plugin_dir_url(__FILE__) . '../assets/css/ponti.css',
+                [],
+                '1.0',
+                'all'
+            );
+        }
     }
 }
+
 
 
 add_shortcode('mes-cours-coach', function () {

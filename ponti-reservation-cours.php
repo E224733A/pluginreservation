@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Ponti - Réservation de Cours
- * Description: Plugin de réservation de cours avec crédits WooCommerce.
- * Version: 1.0
- * Author: Nono
+ * Plugin Name: Plugin Reservation
+ * Description: Mon plugin de réservation pour WP.
+ * Version: 1.0.0
+ * Author: Moi
  */
 
 if (!defined('ABSPATH')) exit;

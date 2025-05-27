@@ -13,7 +13,7 @@ add_action('init', function () {
         !isset($_POST['ponti_nonce']) ||
         !wp_verify_nonce($_POST['ponti_nonce'], 'ponti_reserver_cours')
     ) return;
-    
+
     $user_id = get_current_user_id();
     $creneau_id = intval($_POST['ponti_reservation_creneau_id']);
     $abonnement = get_user_meta($user_id, 'ponti_abonnement_illimite', true);
@@ -47,7 +47,10 @@ add_action('init', function () {
     }
 
     update_post_meta($creneau_id, '_ponti_places', max(0, $places - 1));
+
+    // 🔔 Action déclenchée après la réservation
     do_action('ponti_apres_reservation', $user_id, $creneau_id);
+
     wp_redirect(add_query_arg('reservation', 'success', wp_get_referer()));
     exit;
 });

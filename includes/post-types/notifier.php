@@ -10,7 +10,7 @@ add_action('ponti_apres_reservation', function ($user_id, $creneau_id) {
 
     $to = $user->user_email;
     $subject = "🎯 Confirmation de votre réservation";
-    
+
     $date   = get_post_meta($creneau_id, '_ponti_date', true);
     $heure  = get_post_meta($creneau_id, '_ponti_heure', true);
     $coach  = get_post_meta($creneau_id, '_ponti_coach', true);

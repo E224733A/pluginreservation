@@ -25,4 +25,4 @@ add_action('ponti_apres_reservation', function ($user_id, $creneau_id) {
     $message .= "Merci pour votre confiance,\nL’équipe Pole Dance Guyane.";
 
     wp_mail($to, $subject, $message);
-});
+}, 10, 2);

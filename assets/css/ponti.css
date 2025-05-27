@@ -1,0 +1,153 @@
+/* Palette principale */
+:root {
+    --noir-mat: #0d0d0d;
+    --rouge-laterite: #a93524;
+    --cuivre: #b87f4c;
+    --vert-jungle: #1d3f34;
+    --creme: #f5f1e3;
+}
+
+/* Wrapper général */
+.agenda-wrapper,
+.coach-cours-wrapper {
+    background-color: var(--noir-mat);
+    color: var(--creme);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+/* Titres */
+.agenda-wrapper .agenda-title,
+.coach-cours-wrapper h2 {
+    color: var(--cuivre);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Légende niveaux */
+.agenda-legende-niveaux {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cuivre);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+/* Liste */
+.agenda-list,
+.coach-cours-list {
+    list-style: none;
+    padding: 0;
+}
+
+.agenda-item,
+.coach-cours-list li {
+    background-color: #1a1a1a;
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    border: 1px solid var(--cuivre);
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+/* Infos */
+.agenda-info,
+.coach-cours-list li {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Bouton Réserver */
+.agenda-wrapper .agenda-button {
+    background-color: #A7352D; /* couleur de fond */
+    color: #F7EFD8;            /* couleur du texte */
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.agenda-wrapper .agenda-button:hover {
+    background-color: #EFC569; /* fond hover */
+    color: #A4382D;            /* texte hover */
+}
+
+/* Badge réservé */
+.agenda-reserved-badge {
+    display: inline-block;
+    background-color: var(--vert-jungle);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Messages */
+.agenda-message,
+.agenda-message-error {
+    color: var(--creme);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.agenda-message-error {
+    color: #ff4a4a;
+}
+
+.agenda-note {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 0.6rem;
+    font-style: italic;
+}
+
+/* Champs spécifiques */
+.agenda-date, .agenda-time, .agenda-coach, .agenda-niveau, .agenda-places {
+    font-weight: bold;
+}
+
+/* Filtres en ligne avec style cohérent */
+.agenda-filtres {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.filtre-bloc {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.filtre-bloc label {
+    font: bold 0.9rem sans-serif;
+    color: var(--cuivre);
+    margin-bottom: 0.3rem;
+}
+
+.filtre-bloc select {
+    background: var(--creme);
+    color: black;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+  .ponti-credit-counter-inline {
+    top: 150px !important;    /* décalé plus bas */
+    right: 90px !important;   /* décalé à gauche du menu burger */
+    font-size: 13px !important;
+    padding: 5px 10px !important;
+  }
+}
+

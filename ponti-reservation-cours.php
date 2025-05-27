@@ -4,6 +4,8 @@
  * Description: Plugin de réservation de cours avec crédits WooCommerce.
  * Version: 1.0
  * Author: Nono
+ * git : oui
+ * 
  */
 
 if (!defined('ABSPATH')) exit;

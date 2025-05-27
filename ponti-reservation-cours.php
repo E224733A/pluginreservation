@@ -25,3 +25,8 @@ if (file_exists($loader)) {
 } else {
     error_log('❌ Fichier class-ponti-loader.php manquant.');
 }
+
+function ponti_enqueue_styles() {
+    wp_enqueue_style('ponti-css', plugin_dir_url(__FILE__) . 'assets/css/ponti.css', array(), '1.0');
+}
+add_action('wp_enqueue_scripts', 'ponti_enqueue_styles');

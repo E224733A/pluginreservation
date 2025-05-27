@@ -17,7 +17,7 @@ add_action('add_meta_boxes', function () {
 });
 
 /**
- * Fonction qui affiche le formulaire dans la meta box
+ * Affiche le formulaire
  */
 function ponti_afficher_formulaire_creneau($post) {
     $date   = get_post_meta($post->ID, '_ponti_date', true);
@@ -51,6 +51,7 @@ function ponti_afficher_formulaire_creneau($post) {
     <p>
         <label for="_ponti_niveau"><strong>Niveau :</strong></label><br>
         <select id="_ponti_niveau" name="_ponti_niveau" required>
+            <option value="">-- Sélectionnez --</option>
             <option value="debutant" <?php selected($niveau, 'debutant'); ?>>Débutant</option>
             <option value="intermediaire" <?php selected($niveau, 'intermediaire'); ?>>Intermédiaire</option>
             <option value="avance" <?php selected($niveau, 'avance'); ?>>Avancé</option>
@@ -65,24 +66,49 @@ function ponti_afficher_formulaire_creneau($post) {
 }
 
 /**
- * Sauvegarde des champs à l'enregistrement du post
+ * Sauvegarde des champs avec validation
  */
 add_action('save_post_creneau', function ($post_id) {
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
 
-    if (isset($_POST['_ponti_date'])) {
-        update_post_meta($post_id, '_ponti_date', sanitize_text_field($_POST['_ponti_date']));
+    $errors = [];
+
+    $date   = sanitize_text_field($_POST['_ponti_date'] ?? '');
+    $heure  = sanitize_text_field($_POST['_ponti_heure'] ?? '');
+    $coach  = sanitize_text_field($_POST['_ponti_coach'] ?? '');
+    $niveau = sanitize_text_field($_POST['_ponti_niveau'] ?? '');
+    $places = intval($_POST['_ponti_places'] ?? 0);
+
+    if (empty($date))   $errors[] = 'La date est obligatoire.';
+    if (empty($heure))  $errors[] = 'L\'heure est obligatoire.';
+    if (empty($coach))  $errors[] = 'Le coach est obligatoire.';
+    if (empty($niveau)) $errors[] = 'Le niveau est obligatoire.';
+    if ($places < 1)    $errors[] = 'Le nombre de places doit être au moins égal à 1.';
+
+    if (!empty($errors)) {
+        // Sauvegarde une erreur temporaire (non bloquante mais informative)
+        set_transient("ponti_creneau_erreur_$post_id", implode('<br>', $errors), 10);
+        return;
     }
-    if (isset($_POST['_ponti_heure'])) {
-        update_post_meta($post_id, '_ponti_heure', sanitize_text_field($_POST['_ponti_heure']));
-    }
-    if (isset($_POST['_ponti_coach'])) {
-        update_post_meta($post_id, '_ponti_coach', sanitize_text_field($_POST['_ponti_coach']));
-    }
-    if (isset($_POST['_ponti_niveau'])) {
-        update_post_meta($post_id, '_ponti_niveau', sanitize_text_field($_POST['_ponti_niveau']));
-    }
-    if (isset($_POST['_ponti_places'])) {
-        update_post_meta($post_id, '_ponti_places', intval($_POST['_ponti_places']));
+
+    update_post_meta($post_id, '_ponti_date', $date);
+    update_post_meta($post_id, '_ponti_heure', $heure);
+    update_post_meta($post_id, '_ponti_coach', $coach);
+    update_post_meta($post_id, '_ponti_niveau', $niveau);
+    update_post_meta($post_id, '_ponti_places', $places);
+});
+
+/**
+ * Affichage des erreurs de validation après enregistrement
+ */
+add_action('admin_notices', function () {
+    global $post;
+    if (isset($post->ID)) {
+        $message = get_transient("ponti_creneau_erreur_{$post->ID}");
+        if ($message) {
+            echo '<div class="notice notice-error is-dismissible"><p><strong>Erreur lors de l’enregistrement du créneau :</strong><br>' . $message . '</p></div>';
+            delete_transient("ponti_creneau_erreur_{$post->ID}");
+        }
     }
 });

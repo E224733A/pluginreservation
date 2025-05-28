@@ -6,22 +6,26 @@ add_action('astra_header_after', function () {
 
     $user_id = get_current_user_id();
     $credits = (int) get_user_meta($user_id, 'ponti_credits', true);
-    $abonnement = get_user_meta($user_id, 'ponti_abonnement_illimite', true);
-
-    $label = $abonnement ? '∞ cours' : $credits . ' crédit(s)';    $style = 'position:relative;display:inline-block;vertical-align:middle;margin-left:10px;
-              background:#fff;color:#000;padding:4px 12px;border-radius:20px;
-              box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:13px;
+    $abonnement = get_user_meta($user_id, 'ponti_abonnement_illimite', true);    $label = $abonnement ? '∞ cours' : $credits . ' crédit(s)';    $style = 'position:fixed;
+              top:2vh;right:20vw;z-index:9999;
+              background:#fff;color:#000;padding:0.4vh 2vw;border-radius:15px;
+              box-shadow:0 1px 3px rgba(0,0,0,0.1);font-size:1.8vh;
               font-weight:bold;font-family:sans-serif;';
     $responsive_css = '<style>
-        .ponti-credit-counter-inline {
-            display: inline-block !important;
-            vertical-align: middle !important;
-            margin: 0 10px !important;
-        }
         @media (max-width: 768px) {
             .ponti-credit-counter-inline {
-                font-size: 11px !important;
-                padding: 3px 10px !important;
+                top: 3vh !important;
+                right: 25vw !important;
+                font-size: 1.5vh !important;
+                padding: 0.3vh 1.5vw !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .ponti-credit-counter-inline {
+                top: 2.5vh !important;
+                right: 28vw !important;
+                font-size: 1.4vh !important;
+                padding: 0.25vh 2vw !important;
             }
         }
     </style>';

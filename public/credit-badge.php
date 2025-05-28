@@ -12,5 +12,5 @@ add_action('astra_header_after', function () {
 
     $label = $abonnement ? '∞ cours' : $credits . ' crédit(s)';
     $style = '';
-    echo "<div class='ponti-credit-counter-inline'>$label</div>";
+    echo "<a href='https://www.pontipole.fr/mon-compte/' class='ponti-credit-counter-inline'>$label</a>";
 });

@@ -3,7 +3,7 @@
  * Plugin Name: Plugin Reservation
  * Plugin URI: https://github.com/E224733A/pluginreservation
  * Description: Système de réservation de cours.
- * Version: 2.0.0
+ * Version: 4.0.0
  * Author: Nono
  * License: GPL2
  */

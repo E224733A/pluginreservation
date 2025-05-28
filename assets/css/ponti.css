@@ -160,10 +160,10 @@
 
 @media screen and (max-width: 768px) {
   .ponti-credit-counter-inline {
-    top: 150px !important;    /* décalé plus bas */
-    right: 90px !important;   /* décalé à gauche du menu burger */
-    font-size: 13px !important;
-    padding: 5px 10px !important;
+    top: 21px !important;
+    right: 78px !important;
+    font-size: 10px !important;
+    padding: 10px 4px !important;
   }
 }
 

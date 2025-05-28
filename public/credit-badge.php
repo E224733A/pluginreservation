@@ -12,7 +12,7 @@ add_action('astra_header_after', function () {
               background:#fff;color:#000;padding:4px 8px;border-radius:15px;
               box-shadow:0 2px 4px rgba(0,0,0,0.1);font-size:12px;
               font-weight:bold;font-family:sans-serif;';
-    $responsive_css = '<style>@media (max-width: 600px) { .ponti-credit-counter-inline { top: auto !important; bottom: 20px !important; right: 20px !important; left: auto !important; font-size:13px !important; padding:5px 10px !important; } }</style>';
+    $responsive_css = '<style>@media (max-width: 600px) { .ponti-credit-counter-inline { top : 24px !important; right: 32px !important; left: auto !important; font-size:8px !important; padding:2px 8px !important; } }</style>';
     echo $responsive_css;
     echo "<div class='ponti-credit-counter-inline' style=\"$style\">$label</div>";
 });

@@ -62,14 +62,25 @@ function ponti_generer_csv($creneau_id) {
         wp_die('Accès non autorisé');
     }
 
+    // Nettoyage du tampon de sortie
+    if (ob_get_level()) {
+        ob_end_clean();
+    }
+
+    // Forcer le téléchargement
     $filename = "reservations_creneau_{$creneau_id}.csv";
-    header('Content-Type: text/csv');
-    header("Content-Disposition: attachment; filename={$filename}");
+    header('Content-Type: text/csv; charset=UTF-8');
+    header("Content-Disposition: attachment; filename=\"$filename\"");
     header('Pragma: no-cache');
     header('Expires: 0');
 
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['ID Utilisateur', 'Nom', 'Email']);
+
+    // Ajout d'un BOM UTF-8 pour Excel
+    fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+    // En-têtes CSV
+    fputcsv($output, ['ID Utilisateur', 'Nom', 'Email'], ';');
 
     $users = get_users();
     foreach ($users as $user) {

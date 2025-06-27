@@ -75,7 +75,7 @@ function ponti_generer_csv($creneau_id) {
     foreach ($users as $user) {
         $reservations = get_user_meta($user->ID, 'ponti_reservations', true);
         if (is_array($reservations) && in_array($creneau_id, $reservations)) {
-            fputcsv($output, [$user->ID, $user->display_name, $user->user_email]);
+            fputcsv($output, [$user->ID, $user->display_name, $user->user_email], ';');
         }
     }
 
